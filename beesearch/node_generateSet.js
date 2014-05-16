@@ -14,9 +14,10 @@ for (var i = length - 1; i >= 0; i--) {
   var client = {};
   client.firstname = Faker.random.first_name();
   client.lastname = Faker.random.last_name();
-  client.email = Faker.Helpers.slugify(client.firstname.toLowerCase()) + "." + Faker.Helpers.slugify(client.lastname.toLowerCase()) + "@" + Faker.Helpers.slugify(Faker.Internet.domainName());
+  var companyName = Faker.Company.companyName()
+  client.email = Faker.Helpers.slugify(client.firstname.toLowerCase()) + "." + Faker.Helpers.slugify(client.lastname.toLowerCase()) + "@" + Faker.Helpers.slugify(companyName.toLowerCase() + "." + Faker.random.domain_suffix());
   client.company = {};
-  client.company.name = Faker.Company.companyName();
+  client.company.name = companyName;
   client.company.catchPhrase = Faker.Company.catchPhrase();
   client.company.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
   client.adress = {};
@@ -25,22 +26,22 @@ for (var i = length - 1; i >= 0; i--) {
   client.adress.city = Faker.Address.city();
   client.adress.state = Faker.random.fr_state();
 
-  if (logs) {
-    console.log(JSON.stringify(client));
-  };
-  
-  bigSet.push(client);
+  var row = '';
+  if (bigSet.length > 0) {
+    row += '\r';
+  }
+  row += JSON.stringify(client);
 
-  // Empty array in a file every 10 items
-  if (bigSet.length >= 0) {
-    fs.appendFile('bigDataSet.json', JSON.stringify(bigSet, null, 2), function(err) {
-      if (err) throw err;
-      // Log
-      console.log("appended bigDataSet.json");
-    });
-    // Empty the array ;)
-    bigSet.length = 0;
+  if (logs) {
+    console.log(JSON.stringify(client, null, 2));
   };
+
+  bigSet.push(row);
 };
 
+fs.appendFile('bigDataSet.json', bigSet, function(err) {
+  if (err) throw err;
+  // Log
+  console.log("appended bigDataSet.json");
+});
 console.log("bigDataSet.json generated successfully!");
