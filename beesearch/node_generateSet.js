@@ -2,51 +2,50 @@ var fs = require('fs');
 var Faker= require('../index');
 
 var length = process.argv[2];
-var logs = process.argv[3];
+var commit = process.argv[3];
+var fileName = 'customer.json'
 
-fs.unlink('bigDataSet.json');
+fs.unlink(fileName);
 
-// generate bigDataSet as example
-var bigSet = [];
+
+console.log("### Starting Customer ###");
+
+// generate customer file
 for (var i = length - 1; i >= 0; i--) {
-  var client = {};
-  client.firstname = Faker.random.first_name();
-  client.lastname = Faker.random.last_name();
+  
+  // create 
+  var customer = {};
+  customer.firstname = Faker.random.first_name();
+  customer.lastname = Faker.random.last_name();
   var companyName = Faker.Company.companyName()
-  client.email = Faker.Helpers.slugify(client.firstname.toLowerCase()) + "." + Faker.Helpers.slugify(client.lastname.toLowerCase()) + "@" + Faker.Helpers.slugify(companyName.toLowerCase() + "." + Faker.random.domain_suffix());
-  client.company = {};
-  client.company.name = companyName;
-  client.company.catchPhrase = Faker.Company.catchPhrase();
-  client.company.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
-  client.adress = {};
-  client.adress.street = Faker.Address.streetAddress();
-  client.adress.zip = "" + Faker.random.numberlowhigh(10, 98) + Faker.random.numberlowhigh(100, 999);
-  client.adress.city = Faker.Address.city();
-  client.adress.state = Faker.random.fr_state();
+  customer.email = Faker.Helpers.slugify(customer.firstname.toLowerCase()) + "." 
+                      + Faker.Helpers.slugify(customer.lastname.toLowerCase()) + "@" 
+                      + Faker.Helpers.slugify(companyName.toLowerCase() + "." 
+                      + Faker.random.domain_suffix());
+  customer.company = {};
+  customer.company.name = companyName;
+  customer.company.catchPhrase = Faker.Company.catchPhrase();
+  customer.company.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
+  customer.adress = {};
+  customer.adress.street = Faker.Address.streetAddress();
+  customer.adress.zip = "" + Faker.random.numberlowhigh(10, 98) + Faker.random.numberlowhigh(100, 999);
+  customer.adress.city = Faker.Address.city();
+  customer.adress.state = Faker.random.fr_state();
 
-  var row = '';
-  /*if (bigSet.length === 0) {
-    row += '[';
-  }*/
-  if (bigSet.length > 0) {
-    row += '\n';
+  // log the last to console
+  if (i === 0) {
+    console.log("--> Last Customer");
+    console.log(JSON.stringify(customer, null, 2));
   }
-  row += JSON.stringify(client);
-  /*if ((bigSet.length + 1) == length) {
-    row += ']\n';
-  }*/
 
-  if (logs) {
-    console.log(JSON.stringify(client, null, 2));
-  };
+  // generate file
+  var row = '';
+  row += JSON.stringify(customer);
+  row += '\n';
+  fs.appendFileSync(fileName, row);
 
-  bigSet.push(row);
-  fs.appendFile('bigDataSet.json', row, function(err) {
-  if (err) throw err;
-    // Log
-    console.log("appended bigDataSet.json");
-  });
 };
 
+console.log("--> File [" + fileName + "] generated successfully !");
 
-console.log("bigDataSet.json generated successfully!");
+
