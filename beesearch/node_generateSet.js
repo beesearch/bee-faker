@@ -1,46 +1,59 @@
 var fs = require('fs');
 var Faker= require('../index');
 
-var length = process.argv[2];
-var commit = process.argv[3];
-var fileName = 'customer.json'
+// Company setup
+var companyLength = 123;
+var fileName = 'company.json'
+
 
 fs.unlink(fileName);
 
+console.log("### Starting  generating " + companyLength + " company ###");
 
-console.log("### Starting Customer ###");
+// generate company file
+for (var i = 1; i <= companyLength; i++) {
 
-// generate customer file
-for (var i = length - 1; i >= 0; i--) {
+  var company = {};
+  var companyName = Faker.Company.companyName();
+ 
+  company.header = {};
+  company.header.id = 1000 + i;
+  company.header.companyname = companyName;
+  company.header.catchPhrase = Faker.Company.catchPhrase();
+  company.header.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
   
-  // create 
-  var customer = {};
-  customer.firstname = Faker.random.first_name();
-  customer.lastname = Faker.random.last_name();
-  var companyName = Faker.Company.companyName()
-  customer.email = Faker.Helpers.slugify(customer.firstname.toLowerCase()) + "." 
-                      + Faker.Helpers.slugify(customer.lastname.toLowerCase()) + "@" 
-                      + Faker.Helpers.slugify(companyName.toLowerCase() + "." 
-                      + Faker.random.domain_suffix());
-  customer.company = {};
-  customer.company.name = companyName;
-  customer.company.catchPhrase = Faker.Company.catchPhrase();
-  customer.company.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
-  customer.adress = {};
-  customer.adress.street = Faker.Address.streetAddress();
-  customer.adress.zip = "" + Faker.random.numberlowhigh(10, 98) + Faker.random.numberlowhigh(100, 999);
-  customer.adress.city = Faker.Address.city();
-  customer.adress.state = Faker.random.fr_state();
+  company.commercialAddress = {};
+  company.commercialAddress.street = Faker.Address.streetAddress();
+  company.commercialAddress.zip = "" + Faker.random.numberlowhigh(10, 98) + Faker.random.numberlowhigh(100, 999);
+  company.commercialAddress.city = Faker.Address.city();
+  company.commercialAddress.state = Faker.random.fr_state();
+  
+  company.shippingAddress = {};
+  company.shippingAddress.street = Faker.Address.streetAddress();
+  company.shippingAddress.zip = "" + Faker.random.numberlowhigh(10, 98) + Faker.random.numberlowhigh(100, 999);
+  company.shippingAddress.city = Faker.Address.city();
+  company.shippingAddress.state = Faker.random.fr_state();
+  
+
+  company.contact = {};
+  for (var j = 1; j <= 3; j++) {
+    company.contact.firstname = Faker.random.first_name();
+    company.contact.lastname = Faker.random.last_name();
+    company.contact.email = Faker.Helpers.slugify(company.contact.firstname.toLowerCase()) + "." 
+                          + Faker.Helpers.slugify(company.contact.lastname.toLowerCase()) + "@" 
+                          + Faker.Helpers.slugify(companyName.toLowerCase() + "." 
+                          + Faker.random.domain_suffix());
+  }
 
   // log the last to console
-  if (i === 0) {
-    console.log("--> Last Customer");
-    console.log(JSON.stringify(customer, null, 2));
+  if (i == companyLength) {
+    console.log("--> Last company");
+    console.log(JSON.stringify(company, null, 2));
   }
 
   // generate file
   var row = '';
-  row += JSON.stringify(customer);
+  row += JSON.stringify(company);
   row += '\n';
   fs.appendFileSync(fileName, row);
 
