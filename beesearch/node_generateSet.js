@@ -34,15 +34,16 @@ for (var i = 1; i <= companyLength; i++) {
   company.shippingAddress.city = Faker.Address.city();
   company.shippingAddress.state = Faker.random.fr_state();
   
-
   company.contact = {};
   for (var j = 1; j <= 3; j++) {
-    company.contact.firstname = Faker.random.first_name();
-    company.contact.lastname = Faker.random.last_name();
-    company.contact.email = Faker.Helpers.slugify(company.contact.firstname.toLowerCase()) + "." 
+    company.contact[j].firstname = Faker.random.first_name();
+    company.contact[j].lastname = Faker.random.last_name();
+    company.contact[j].email = Faker.Helpers.slugify(company.contact.firstname.toLowerCase()) + "." 
                           + Faker.Helpers.slugify(company.contact.lastname.toLowerCase()) + "@" 
                           + Faker.Helpers.slugify(companyName.toLowerCase() + "." 
                           + Faker.random.domain_suffix());
+    
+
   }
 
   // log the last to console
