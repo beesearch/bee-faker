@@ -3,7 +3,7 @@ var Faker= require('../index');
 var definitions = require('../lib/definitions');
 
 // order setup
-var orderLength = 10;
+var orderLength = 1000;
 var fileName = 'fake-order.json'
 
 var from = new Date(2005, 1, 1, 8, 0, 0, 0);
