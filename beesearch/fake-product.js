@@ -4,19 +4,45 @@ var definitions = require('../lib/definitions');
 
 // product setup
 var productLength = 1000;
-var fileName = 'fake-product.json'
+var subsidiary = process.argv[2];
+
+// check subsidiary arg
+if (subsidiary == "snrf") {
+  console.log("### Starting  generating " + productLength + " products for " + subsidiary);
+  var fileName = 'fake-product-' + subsidiary + '.json'
+  //var product_qualif = "product_qualif_" + subsidiary;
+} else if (subsidiary == "fta") {
+  console.log("### Starting  generating " + productLength + " products for " + subsidiary);
+  var fileName = 'fake-product-' + subsidiary + '.json'
+} else if (subsidiary == "qn") {
+  console.log("### Starting  generating " + productLength + " products for " + subsidiary);
+  var fileName = 'fake-product-' + subsidiary + '.json'
+} else {
+  console.log("### Error subsidiary must be 'snrf', 'fta' or 'qn'. Please retry...");
+  process.exit(1);
+}
 
 fs.unlink(fileName);
-
-console.log("### Starting  generating " + productLength + " product ###");
 
 // generate product file
 for (var i = 1; i <= productLength; i++) {
 
   var product = {};
-  var productName = Faker.Helpers.shuffle(definitions.product_qualif).slice(0, 1) + " "
+
+  if (subsidiary == "snrf") {
+    var productName = Faker.Helpers.shuffle(definitions.product_qualif_snrf).slice(0, 1) + " "
+                    + Faker.Helpers.shuffle(definitions.product_forme_snrf).slice(0, 1) + " "
+                    + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " ";
+  } else if (subsidiary == "fta") {
+    var productName = Faker.Helpers.shuffle(definitions.product_qualif_fta).slice(0, 1) + " "
                     + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " "
                     + Faker.Helpers.shuffle(definitions.product_material).slice(0, 1) + " ";
+  } else if (subsidiary == "qn") {
+    var productName = Faker.Helpers.shuffle(definitions.product_qualif_qn).slice(0, 1) + " "
+                    + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " "
+                    + Faker.Helpers.shuffle(definitions.product_material).slice(0, 1) + " ";    
+  }
+
   var productHeight = Faker.random.numberlowhigh(30, 99) + "0";
   var productWidth = Faker.random.numberlowhigh(1, 9) + "0";
   var productWeight = (productHeight*productWidth)/10000 + "0";

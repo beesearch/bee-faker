@@ -3,7 +3,24 @@ var Faker= require('../index');
 
 // Customer setup
 var customerLength = 1000;
-var fileName = 'fake-customer.json'
+var subsidiary = process.argv[2];
+
+// check subsidiary arg
+if (subsidiary == "snrf") {
+  console.log("### Starting  generating " + customerLength + " products for " + subsidiary);
+  var fileName = 'fake-customer-' + subsidiary + '.json'
+  //var product_qualif = "product_qualif_" + subsidiary;
+} else if (subsidiary == "fta") {
+  console.log("### Starting  generating " + customerLength + " products for " + subsidiary);
+  var fileName = 'fake-customer-' + subsidiary + '.json'
+} else if (subsidiary == "qn") {
+  console.log("### Starting  generating " + customerLength + " products for " + subsidiary);
+  var fileName = 'fake-customer-' + subsidiary + '.json'
+} else {
+  console.log("### Error subsidiary must be 'snrf', 'fta' or 'qn'. Please retry...");
+  process.exit(1);
+}
+
 var countContactID = 0;
 
 var from = new Date(2005, 1, 1, 8, 0, 0, 0);
