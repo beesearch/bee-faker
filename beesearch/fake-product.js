@@ -26,7 +26,6 @@ fs.unlink(fileName);
 
 // generate product file
 for (var i = 1; i <= productLength; i++) {
-
   var product = {};
 
   if (subsidiary == "snrf") {
