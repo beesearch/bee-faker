@@ -74,60 +74,60 @@ for (var i = 1; i <= customerLength; i++) {
                 customer.commercialAddress = {};
                 customer.commercialAddress.street = Faker.Address.streetAddress();
                 customer.commercialAddress.zip = "" + Faker.random.numberlowhigh(44, 44) + Faker.random.numberlowhigh(100, 999);
-                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_loire_atlantique).slice(0, 1)
+                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_loire_atlantique).slice(0, 1)[0];
                 customer.commercialAddress.state = "Pays-de-Loire";  
                 customer.shippingAddress = {};
                 customer.shippingAddress.street = Faker.Address.streetAddress();
                 customer.shippingAddress.zip = "" + Faker.random.numberlowhigh(44, 44) + Faker.random.numberlowhigh(100, 999);
-                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_loire_atlantique).slice(0, 1)
+                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_loire_atlantique).slice(0, 1)[0];
                 customer.shippingAddress.state = "Pays-de-Loire"; 
             break;
         case 1:
                 customer.commercialAddress = {};
                 customer.commercialAddress.street = Faker.Address.streetAddress();
                 customer.commercialAddress.zip = "" + Faker.random.numberlowhigh(53, 53) + Faker.random.numberlowhigh(100, 999);
-                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_mayenne).slice(0, 1)
+                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_mayenne).slice(0, 1)[0];
                 customer.commercialAddress.state = "Mayenne";  
                 customer.shippingAddress = {};
                 customer.shippingAddress.street = Faker.Address.streetAddress();
                 customer.shippingAddress.zip = "" + Faker.random.numberlowhigh(53, 53) + Faker.random.numberlowhigh(100, 999);
-                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_loire_atlantique).slice(0, 1)
+                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_loire_atlantique).slice(0, 1)[0];
                 customer.shippingAddress.state = "Mayenne";
              break;
         case 2:
                 customer.commercialAddress = {};
                 customer.commercialAddress.street = Faker.Address.streetAddress();
                 customer.commercialAddress.zip = "" + Faker.random.numberlowhigh(85, 85) + Faker.random.numberlowhigh(100, 999);
-                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_vendee).slice(0, 1)
+                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_vendee).slice(0, 1)[0];
                 customer.commercialAddress.state = "Vendée";  
                 customer.shippingAddress = {};
                 customer.shippingAddress.street = Faker.Address.streetAddress();
                 customer.shippingAddress.zip = "" + Faker.random.numberlowhigh(85, 85) + Faker.random.numberlowhigh(100, 999);
-                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_vendee).slice(0, 1)
+                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_vendee).slice(0, 1)[0];
                 customer.shippingAddress.state = "Vendée";
              break;
         case 3:
                 customer.commercialAddress = {};
                 customer.commercialAddress.street = Faker.Address.streetAddress();
                 customer.commercialAddress.zip = "" + Faker.random.numberlowhigh(72, 72) + Faker.random.numberlowhigh(100, 999);
-                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_sarthe).slice(0, 1)
+                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_sarthe).slice(0, 1)[0];
                 customer.commercialAddress.state = "Sarthe";  
                 customer.shippingAddress = {};
                 customer.shippingAddress.street = Faker.Address.streetAddress();
                 customer.shippingAddress.zip = "" + Faker.random.numberlowhigh(72, 72) + Faker.random.numberlowhigh(100, 999);
-                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_sarthe).slice(0, 1)
+                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_sarthe).slice(0, 1)[0];
                 customer.shippingAddress.state = "Sarthe";
              break;
         case 4:
                 customer.commercialAddress = {};
                 customer.commercialAddress.street = Faker.Address.streetAddress();
                 customer.commercialAddress.zip = "" + Faker.random.numberlowhigh(49, 49) + Faker.random.numberlowhigh(100, 999);
-                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_maine_et_loire).slice(0, 1)
+                customer.commercialAddress.city = Faker.Helpers.shuffle(definitions.ville_maine_et_loire).slice(0, 1)[0];
                 customer.commercialAddress.state = "Maine et Loire";  
                 customer.shippingAddress = {};
                 customer.shippingAddress.street = Faker.Address.streetAddress();
                 customer.shippingAddress.zip = "" + Faker.random.numberlowhigh(49, 49) + Faker.random.numberlowhigh(100, 999);
-                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_maine_et_loire).slice(0, 1)
+                customer.shippingAddress.city = Faker.Helpers.shuffle(definitions.ville_maine_et_loire).slice(0, 1)[0];
                 customer.shippingAddress.state = "Maine et Loire";
              break;
       }
