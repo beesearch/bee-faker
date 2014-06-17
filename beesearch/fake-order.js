@@ -3,8 +3,25 @@ var Faker= require('../index');
 var definitions = require('../lib/definitions');
 
 // order setup
-var orderLength = 1000;
-var fileName = 'fake-order.json'
+var orderLength = 100000;
+var subsidiary = process.argv[2];
+
+// check subsidiary arg
+if (subsidiary == "snrf") {
+  console.log("### Starting  generating " + orderLength + " products for " + subsidiary);
+  var fileName = 'fake-order-' + subsidiary + '.json'
+  //var product_qualif = "product_qualif_" + subsidiary;
+} else if (subsidiary == "fta") {
+  console.log("### Starting  generating " + orderLength + " products for " + subsidiary);
+  var fileName = 'fake-order-' + subsidiary + '.json'
+} else if (subsidiary == "qn") {
+  console.log("### Starting  generating " + orderLength + " products for " + subsidiary);
+  var fileName = 'fake-order-' + subsidiary + '.json'
+} else {
+  console.log("### Error subsidiary must be 'snrf', 'fta' or 'qn'. Please retry...");
+  process.exit(1);
+}
+
 
 var from = new Date(2005, 1, 1, 8, 0, 0, 0);
 var now = new Date(2012, 27, 5, 18, 01, 02, 0);
