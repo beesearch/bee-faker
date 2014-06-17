@@ -3,7 +3,7 @@ var Faker= require('../index');
 var definitions = require('../lib/definitions');
 
 // order setup
-var orderLength = 100000;
+var orderLength = 10000;
 var subsidiary = process.argv[2];
 
 // check subsidiary arg
@@ -51,7 +51,7 @@ for (var i = 1; i <= orderLength; i++) {
     orderLineId++;
     line = {};
     line.lineId = orderLineId;
-    line.productId = Faker.random.numberlowhigh(1,1000);
+    line.productId = Faker.random.numberlowhigh(1,100);
     line.quantity = Faker.random.numberlowhigh(1,5) + "00";
     line.unitPrice = Faker.random.numberlowhigh(1,3) + Faker.Helpers.shuffle(definitions.product_price_extention).slice(0, 1);
     line.lineAmount = line.unitPrice * line.quantity;
