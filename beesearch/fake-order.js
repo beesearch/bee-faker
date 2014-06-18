@@ -3,8 +3,8 @@ var Faker= require('../index');
 var definitions = require('../lib/definitions');
 
 // order setup
-var orderLength = 10000;
 var subsidiary = process.argv[2];
+var orderLength = process.argv[3];
 
 // check subsidiary arg
 if (subsidiary == "snrf") {

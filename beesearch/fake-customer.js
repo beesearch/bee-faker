@@ -4,8 +4,8 @@ var definitions = require('../lib/definitions');
 
 
 // Customer setup
-var customerLength = 1000;
 var subsidiary = process.argv[2];
+var customerLength = process.argv[3];
 
 // check subsidiary arg
 if (subsidiary == "snrf") {
