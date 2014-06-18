@@ -29,15 +29,18 @@ for (var i = 1; i <= productLength; i++) {
   var product = {};
 
   if (subsidiary == "snrf") {
-    var productName = Faker.Helpers.shuffle(definitions.product_qualif_snrf).slice(0, 1) + " "
+    var productCategory = Faker.Helpers.shuffle(definitions.product_qualif_snrf).slice(0, 1);
+    var productName = productCategory + " "
                     + Faker.Helpers.shuffle(definitions.product_forme_snrf).slice(0, 1) + " "
                     + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " ";
   } else if (subsidiary == "fta") {
-    var productName = Faker.Helpers.shuffle(definitions.product_qualif_fta).slice(0, 1) + " "
+    var productCategory = Faker.Helpers.shuffle(definitions.product_qualif_fta).slice(0, 1);
+    var productName = productCategory + " "
                     + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " "
                     + Faker.Helpers.shuffle(definitions.product_material).slice(0, 1) + " ";
   } else if (subsidiary == "qn") {
-    var productName = Faker.Helpers.shuffle(definitions.product_qualif_qn).slice(0, 1) + " "
+    var productCategory = Faker.Helpers.shuffle(definitions.product_qualif_qn).slice(0, 1);
+    var productName = productCategory + " "
                     + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " "
                     + Faker.Helpers.shuffle(definitions.product_material).slice(0, 1) + " ";    
   }
@@ -50,6 +53,7 @@ for (var i = 1; i <= productLength; i++) {
   product.name = productName.toString().toUpperCase() + " "
                         + productHeight + " - "
                         + productWidth + " mm";
+  product.category = productCategory;
   product.height = productHeight;
   product.width = productWidth;
   product.weight = productWeight;
