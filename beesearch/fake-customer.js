@@ -28,7 +28,7 @@ var countContactID = 0;
 var from = new Date(2005, 1, 1, 8, 0, 0, 0);
 var now = new Date(2012, 27, 5, 18, 01, 02, 0);
 
-fs.unlink(fileName);
+fs.unlinkSync(fileName);
 
 // generate customer file
 for (var i = 1; i <= customerLength; i++) {

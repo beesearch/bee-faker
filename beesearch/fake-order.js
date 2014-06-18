@@ -29,7 +29,7 @@ var now = new Date(2012, 27, 5, 18, 01, 02, 0);
 //var nowParse = Date.parse(now);
 //console.log("nowParse " + nowParse);
 
-fs.unlink(fileName);
+fs.unlinkSync(fileName);
 
 // generate order file
 var orderLineId = 0;
