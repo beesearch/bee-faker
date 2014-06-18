@@ -8,14 +8,14 @@ var subsidiary = process.argv[2];
 
 // check subsidiary arg
 if (subsidiary == "snrf") {
-  console.log("### Starting  generating " + orderLength + " products for " + subsidiary);
+  console.log("### Starting  generating " + orderLength + " orders for " + subsidiary);
   var fileName = 'fake-order-' + subsidiary + '.json'
   //var product_qualif = "product_qualif_" + subsidiary;
 } else if (subsidiary == "fta") {
-  console.log("### Starting  generating " + orderLength + " products for " + subsidiary);
+  console.log("### Starting  generating " + orderLength + " orders for " + subsidiary);
   var fileName = 'fake-order-' + subsidiary + '.json'
 } else if (subsidiary == "qn") {
-  console.log("### Starting  generating " + orderLength + " products for " + subsidiary);
+  console.log("### Starting  generating " + orderLength + " orders for " + subsidiary);
   var fileName = 'fake-order-' + subsidiary + '.json'
 } else {
   console.log("### Error subsidiary must be 'snrf', 'fta' or 'qn'. Please retry...");
@@ -30,8 +30,6 @@ var now = new Date(2012, 27, 5, 18, 01, 02, 0);
 //console.log("nowParse " + nowParse);
 
 fs.unlink(fileName);
-
-console.log("### Starting  generating " + orderLength + " order ###");
 
 // generate order file
 var orderLineId = 0;

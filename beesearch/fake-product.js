@@ -22,7 +22,8 @@ if (subsidiary == "snrf") {
   process.exit(1);
 }
 
-fs.unlink(fileName);
+fs.unlinkSync(fileName);
+
 
 // generate product file
 for (var i = 1; i <= productLength; i++) {
