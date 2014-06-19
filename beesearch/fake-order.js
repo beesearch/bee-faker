@@ -49,7 +49,7 @@ for (var i = 1; i <= orderLength; i++) {
     orderLineId++;
     line = {};
     line.lineId = orderLineId;
-    line.productId = Faker.random.numberlowhigh(1,100);
+    line.productId = Faker.random.numberlowhigh(1,10);
     line.quantity = Faker.random.numberlowhigh(1,5) + "00";
     line.unitPrice = Faker.random.numberlowhigh(1,3) + Faker.Helpers.shuffle(definitions.product_price_extention).slice(0, 1);
     line.lineAmount = line.unitPrice * line.quantity;
