@@ -13,12 +13,12 @@ touch fake-order-snrf.json
 node beesearch/fake-product.js qn $1
 node beesearch/fake-product.js fta $1
 node beesearch/fake-product.js snrf $1
-node beesearch/fake-customer.js qn $2
-node beesearch/fake-customer.js fta $2
-node beesearch/fake-customer.js snrf $2
-node beesearch/fake-order.js qn $1
-node beesearch/fake-order.js fta $1
-node beesearch/fake-order.js snrf $1
+node beesearch/fake-customer.js qn $1
+node beesearch/fake-customer.js fta $1
+node beesearch/fake-customer.js snrf $1
+node beesearch/fake-order.js qn $2
+node beesearch/fake-order.js fta $2
+node beesearch/fake-order.js snrf $2
 
 wc -l fake-product-qn.json
 wc -l fake-product-fta.json
@@ -31,13 +31,13 @@ wc -l fake-order-fta.json
 wc -l fake-order-snrf.json
 
 
-echo "Envoyer vers Elasticsearch ? [y/n]"
+echo "Send log to Elasticsearch ? [y/n]"
 
 read touche
 
 case $touche in
 	y)
-		echo "Send log to elasticsearch"
+		echo "Indexing.... please wait"
 		cat fake-product-qn.json | nc -q 500 localhost 3401
 		cat fake-customer-qn.json | nc -q 500 localhost 3402
 		cat fake-order-qn.json | nc -q 500 localhost 3403
