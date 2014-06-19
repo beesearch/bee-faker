@@ -38,15 +38,15 @@ read touche
 case $touche in
 	y)
 		echo "Send log to elasticsearch"
-		sudo cat fake-product-qn.json | nc localhost 3401
-		sudo cat fake-product-fta.json | nc localhost 3402
-		sudo cat fake-product-snrf.json | nc localhost 3403
-		sudo cat fake-customer-qn.json | nc localhost 3404
-		sudo cat fake-customer-fta.json | nc localhost 3405
-		sudo cat fake-customer-snrf.json | nc localhost 3406
-		sudo cat fake-order-qn.json | nc localhost 3407
-		sudo cat fake-order-fta.json | nc localhost 3408
-		sudo cat fake-order-snrf.json | nc localhost 3409
+		tail -1000 fake-product-qn.json | nc localhost 3401
+		tail -1000 fake-customer-qn.json | nc localhost 3402
+		tail -1000 fake-order-qn.json | nc localhost 3403
+		tail -1000 fake-product-fta.json | nc localhost 3404
+		tail -1000 fake-customer-fta.json | nc localhost 3405
+		tail -1000 fake-order-fta.json | nc localhost 3406
+		tail -1000 fake-product-snrf.json | nc localhost 3407
+		tail -1000 fake-customer-snrf.json | nc localhost 3408
+		tail -1000 fake-order-snrf.json | nc localhost 3409
 		;;
 	n)
 		echo "Bye"
