@@ -10,15 +10,15 @@ touch fake-order-qn.json
 touch fake-order-fta.json
 touch fake-order-snrf.json
 
-node beesearch/fake-product.js qn 10
-node beesearch/fake-product.js fta 10
-node beesearch/fake-product.js snrf 10
-node beesearch/fake-customer.js qn 10
-node beesearch/fake-customer.js fta 10
-node beesearch/fake-customer.js snrf 10
-node beesearch/fake-order.js qn 10
-node beesearch/fake-order.js fta 10
-node beesearch/fake-order.js snrf 10
+node beesearch/fake-product.js qn $1
+node beesearch/fake-product.js fta $1
+node beesearch/fake-product.js snrf $1
+node beesearch/fake-customer.js qn $2
+node beesearch/fake-customer.js fta $2
+node beesearch/fake-customer.js snrf $2
+node beesearch/fake-order.js qn $1
+node beesearch/fake-order.js fta $1
+node beesearch/fake-order.js snrf $1
 
 wc -l fake-product-qn.json
 wc -l fake-product-fta.json
