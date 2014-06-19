@@ -39,14 +39,23 @@ case $touche in
 	y)
 		echo "Send log to elasticsearch"
 		sudo tail -1000 fake-product-qn.json | nc localhost 3401
+		read touche
 		sudo tail -1000 fake-product-fta.json | nc localhost 3402
+		read touche
 		sudo tail -1000 fake-product-snrf.json | nc localhost 3403
+		read touche
 		sudo tail -1000 fake-customer-qn.json | nc localhost 3404
+		read touche
 		sudo tail -1000 fake-customer-fta.json | nc localhost 3405
+		read touche
 		sudo tail -1000 fake-customer-snrf.json | nc localhost 3406
+		read touche
 		sudo tail -1000 fake-order-qn.json | nc localhost 3407
+		read touche
 		sudo tail -1000 fake-order-fta.json | nc localhost 3408
+		read touche
 		sudo tail -1000 fake-order-snrf.json | nc localhost 3409
+		read touche
 		;;
 	n)
 		echo "Bye"
