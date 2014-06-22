@@ -2,6 +2,18 @@ var fs = require('fs');
 var Faker= require('../index');
 var definitions = require('../lib/definitions');
 
+// var zmq = require('zmq')
+//   , sock = zmq.socket('push');
+
+// sock.bindSync('tcp://127.0.0.1:3500');
+// console.log('### Producer bound to port 3500');
+
+// setInterval(function(){
+//   console.log('sending work');
+//   sock.send('some work');
+// }, 2000);
+
+
 // Customer setup
 var subsidiary = process.argv[2];
 var customerLength = process.argv[3];
@@ -190,29 +202,47 @@ for (var i = 1; i <= customerLength; i++) {
   }
 
   customer.orders = [];
-  for (var a = 1; a <= orderLength; a++) {
+  var orderNumber = Faker.random.numberlowhigh(3,orderLength);
+  for (var a = 1; a <= orderNumber; a++) {
 
     var order = {};
     order.id = a;
     order.orderDescription = Faker.Helpers.shuffle(definitions.order_type1).slice(0, 1) + " " + Faker.Address.streetName();
 
-    // var orderLineNumber = Faker.random.numberlowhigh(3,10);
-    // var orderLines = [];
-    // var amount = 0;
-    // var orderLineId = 0;
-    // for (var j = 1; j <= orderLineNumber ; j++) {
-    //   orderLineId++;
-    //   line = {};
-    //   line.lineId = orderLineId;
-    //   line.productId = Faker.random.numberlowhigh(1,10);
-    //   line.quantity = Faker.random.numberlowhigh(1,5) + "00";
-    //   line.unitPrice = Faker.random.numberlowhigh(1,3) + Faker.Helpers.shuffle(definitions.product_price_extention).slice(0, 1);
-    //   line.lineAmount = line.unitPrice * line.quantity;
-    //   amount = amount + line.lineAmount;
-    //   orderLines.push(line);
-    // }
+    var orderLineNumber = Faker.random.numberlowhigh(3,10);
+    var orderLines = [];
+    var amount = 0;
+    var orderLineId = 0;
+    for (var j = 1; j <= orderLineNumber ; j++) {
+      orderLineId++;
+      line = {};
+      line.lineId = orderLineId;
+      if (subsidiary == "snrf") {
+        line.productCategory = Faker.Helpers.shuffle(definitions.product_qualif_snrf).slice(0, 1);
+        line.productName = line.productCategory + " "
+                        + Faker.Helpers.shuffle(definitions.product_forme_snrf).slice(0, 1) + " "
+                        + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " ";
+      } else if (subsidiary == "fta") {
+        line.productCategory = Faker.Helpers.shuffle(definitions.product_qualif_fta).slice(0, 1);
+        line.productName = line.productCategory + " "
+                        + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " "
+                        + Faker.Helpers.shuffle(definitions.product_material).slice(0, 1) + " ";
+      } else if (subsidiary == "qn") {
+        line.productCategory = Faker.Helpers.shuffle(definitions.product_qualif_qn).slice(0, 1);
+        line.productName = line.productCategory + " "
+                        + Faker.Helpers.shuffle(definitions.product_lorem).slice(0, 1) + " "
+                        + Faker.Helpers.shuffle(definitions.product_material).slice(0, 1) + " ";    
+      }
+      var categoryNumber = Faker.random.numberlowhigh(1, 10);
+      line.orderCategory = Faker.Helpers.shuffle(definitions.product_lorem).slice(0, categoryNumber);
+      line.quantity = Faker.random.numberlowhigh(1,5) + "00";
+      line.unitPrice = Faker.random.numberlowhigh(1,3) + Faker.Helpers.shuffle(definitions.product_price_extention).slice(0, 1);
+      line.lineAmount = line.unitPrice * line.quantity;
+      amount = amount + line.lineAmount;
+      orderLines.push(line);
+    }
 
-    //order.lines = orderLines;
+    order.lines = orderLines;
     
     order.amount = Faker.random.numberlowhigh(1000,5000);
     var createDate = Faker.Date.between(from, now);
