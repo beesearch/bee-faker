@@ -50,7 +50,7 @@ for (var i = 1; i <= customerLength; i++) {
   var customerInternetDomain = Faker.Helpers.slugify(customerName.toLowerCase() + "." + Faker.random.domain_suffix());
 
   customer.company = {};
-  customer.company.id = i;
+  customer.company.companyId = i;
   customer.company.name = customerName;
   customer.company.catchPhrase = Faker.Company.catchPhrase();
   customer.company.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
@@ -206,7 +206,7 @@ for (var i = 1; i <= customerLength; i++) {
   for (var a = 1; a <= orderNumber; a++) {
 
     var order = {};
-    order.id = a;
+    order.orderId = a;
     order.orderDescription = Faker.Helpers.shuffle(definitions.order_type1).slice(0, 1) + " " + Faker.Address.streetName();
 
     var orderLineNumber = Faker.random.numberlowhigh(3,10);
