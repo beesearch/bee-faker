@@ -1,0 +1,22 @@
+{
+  "company": {
+    "properties": {
+      "companyId": {"type": "integer"}
+    }
+  },
+  "orders": {
+    "type" : "nested",
+    "properties": {
+      "orderId":  {"type": "integer"},
+      "orderDescription": {"type": "string"},
+      "lines": {
+        "type" : "nested",
+        "properties": {
+          "lineId": {"type": "integer"},
+          "productCategory": {"type" : "string"},
+          "orderCategory": {"type" : "string"}
+        }
+      }
+    }
+  }
+}

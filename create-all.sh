@@ -28,14 +28,14 @@ read touche
 case $touche in
 	y)
 		echo "Indexing.... please wait"
-		tail -10000 fake-product-qn.json | nc -q 500 localhost 3401
-		tail -10000 fake-customer-qn.json | nc -q 500 localhost 3402
+		tail -10000 fake-product-qn.json | nc localhost 3401
+		tail -10000 fake-customer-qn.json | nc localhost 3402
 
-		tail -10000 fake-product-fta.json | nc -q 500 localhost 3411
-		tail -10000 fake-customer-fta.json | nc -q 500 localhost 3412
+		tail -10000 fake-product-fta.json | nc localhost 3411
+		tail -10000 fake-customer-fta.json | nc localhost 3412
 
-		tail -10000 fake-product-snrf.json | nc -q 500 localhost 3421
-		tail -10000 fake-customer-snrf.json | nc -q 500 localhost 3422
+		tail -10000 fake-product-snrf.json | nc localhost 3421
+		tail -10000 fake-customer-snrf.json | nc localhost 3422
 
 		;;
 	n)
