@@ -235,8 +235,8 @@ for (var i = 1; i <= customerLength; i++) {
       }
       var categoryNumber = Faker.random.numberlowhigh(1, 10);
       line.orderCategory = Faker.Helpers.shuffle(definitions.product_lorem).slice(0, categoryNumber);
-      line.quantity = Faker.random.numberlowhigh(1,5) + "00";
-      line.unitPrice = Faker.random.numberlowhigh(1,3) + Faker.Helpers.shuffle(definitions.product_price_extention).slice(0, 1);
+      line.quantity = Faker.random.numberlowhigh(1,5) * 100;
+      line.unitPrice = Faker.random.numberlowhigh(1,3) * Faker.Helpers.shuffle(definitions.product_price_extention).slice(0, 1);
       line.lineAmount = line.unitPrice * line.quantity;
       amount = amount + line.lineAmount;
       orderLines.push(line);
