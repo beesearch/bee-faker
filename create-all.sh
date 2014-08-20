@@ -1,44 +1,49 @@
-rm fake-*.json
+echo "########################################"
+echo " DELETE CSV FILE "
+echo "########################################"
+rm fake-*.csv
 
-touch fake-product-qn.json
-touch fake-product-fta.json
-touch fake-product-snrf.json
-touch fake-customer-qn.json
-touch fake-customer-fta.json
-touch fake-customer-snrf.json
+echo "########################################"
+echo " CREATE EMPTY CSV FILE "
+echo "########################################"
+touch fake-customer-qn.csv
+#touch fake-customer-fta.csv
+#touch fake-customer-snrf.csv
+touch fake-order-qn.csv
+#touch fake-order-fta.csv
+#touch fake-order-snrf.csv
 
-node beesearch/fake-product.js qn $1
-node beesearch/fake-product.js fta $1
-node beesearch/fake-product.js snrf $1
-node beesearch/fake-customer.js qn $1 $2
-node beesearch/fake-customer.js fta $1 $2
-node beesearch/fake-customer.js snrf $1 $2
+echo "########################################"
+echo " GENERATE DATA "
+echo "########################################"
+node beesearch/fake-customer-flat.js qn $1
+#node beesearch/fake-customer-flat.js fta $1
+#node beesearch/fake-customer-flat.js snrf $1
+node beesearch/fake-order-flat.js qn $1 $2
+#node beesearch/fake-order-flat.js fta $1 $2
+#node beesearch/fake-order-flat.js snrf $1 $2
 
-wc -l fake-product-qn.json
-wc -l fake-product-fta.json
-wc -l fake-product-snrf.json
-wc -l fake-customer-qn.json
-wc -l fake-customer-fta.json
-wc -l fake-customer-snrf.json
+echo "########################################"
+echo " CHECK WORLD COUNT "
+echo "########################################"
+wc -l fake-customer-qn.csv
+#wc -l fake-customer-fta.csv
+#wc -l fake-customer-snrf.csv
+wc -l fake-order-qn.csv
+#wc -l fake-order-fta.csv
+#wc -l fake-order-snrf.csv
 
-echo "Send log to Elasticsearch ? [y/n]"
+echo "########################################"
+echo " COPY FILE TO SPARK ? [y/n] "
+echo "########################################"
 
 read touche
 
 case $touche in
-	y)
-		echo "Indexing.... please wait"
-		tail -10000 fake-product-qn.json | nc -q 500 localhost 3401
-		tail -10000 fake-customer-qn.json | nc -q 500 localhost 3402
-
-		tail -10000 fake-product-fta.json | nc -q 500 localhost 3411
-		tail -10000 fake-customer-fta.json | nc -q 500 localhost 3412
-
-		tail -10000 fake-product-snrf.json | nc -q 500 localhost 3421
-		tail -10000 fake-customer-snrf.json | nc -q 500 localhost 3422
-
-		;;
-	n)
-		echo "Bye"
-		;;
-esac	
+		y)
+			cp fake*.csv /Users/alex/ab-repo/bee-spark/src/main/resources
+			;;
+		n)
+			echo "Bye"
+			;;
+esac

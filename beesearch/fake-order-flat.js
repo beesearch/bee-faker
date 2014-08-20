@@ -4,7 +4,8 @@ var definitions = require('../lib/definitions');
 
 // order setup
 var subsidiary = process.argv[2];
-var orderLength = process.argv[3];
+var customerLength = process.argv[3];
+var orderLength = process.argv[4];
 
 // check subsidiary arg
 if (subsidiary == "snrf") {
@@ -38,7 +39,8 @@ for (var i = 1; i <= orderLength; i++) {
   var order = {};
   
   order.id = i;
-  order.customerId = Faker.random.numberlowhigh(1,1000)
+  var maxCustomerId = parseInt(customerLength) + 1;
+  order.customerId = Faker.random.numberlowhigh(1,maxCustomerId)
   order.orderDescription = Faker.Helpers.shuffle(definitions.order_type1).slice(0, 1) + " "
                         + Faker.Address.streetName();
 

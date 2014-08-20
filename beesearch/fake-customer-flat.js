@@ -17,18 +17,17 @@ var definitions = require('../lib/definitions');
 // Customer setup
 var subsidiary = process.argv[2];
 var customerLength = process.argv[3];
-var orderLength = process.argv[4];
 
 // check subsidiary arg
 if (subsidiary == "snrf") {
-  console.log("### Starting  generating " + customerLength + " customers with " + orderLength + " orders for "+ subsidiary);
+  console.log("### Starting  generating " + customerLength + " customers for "+ subsidiary);
   var fileName = 'fake-customer-' + subsidiary + '.csv'
   //var product_qualif = "product_qualif_" + subsidiary;
 } else if (subsidiary == "fta") {
-  console.log("### Starting  generating " + customerLength + " customers with " + orderLength + " orders for "+ subsidiary);
+  console.log("### Starting  generating " + customerLength + " customers for "+ subsidiary);
   var fileName = 'fake-customer-' + subsidiary + '.csv'
 } else if (subsidiary == "qn") {
-  console.log("### Starting  generating " + customerLength + " customers with " + orderLength + " orders for "+ subsidiary);
+  console.log("### Starting  generating " + customerLength + " customers for "+ subsidiary);
   var fileName = 'fake-customer-' + subsidiary + '.csv'
 } else {
   console.log("### Error subsidiary must be 'snrf', 'fta' or 'qn'. Please retry...");
