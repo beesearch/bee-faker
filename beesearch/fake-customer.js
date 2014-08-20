@@ -2,18 +2,6 @@ var fs = require('fs');
 var Faker= require('../index');
 var definitions = require('../lib/definitions');
 
-// var zmq = require('zmq')
-//   , sock = zmq.socket('push');
-
-// sock.bindSync('tcp://127.0.0.1:3500');
-// console.log('### Producer bound to port 3500');
-
-// setInterval(function(){
-//   console.log('sending work');
-//   sock.send('some work');
-// }, 2000);
-
-
 // Customer setup
 var subsidiary = process.argv[2];
 var customerLength = process.argv[3];
