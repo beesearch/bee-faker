@@ -26,7 +26,7 @@ echo "########################################"
 echo " GENERATE DATA "
 echo "########################################"
 node beesearch/fake-customer-flat.js qn $1 $2
-node beesearch/fake-customer-flat.js fta $1 $2
+#node beesearch/fake-customer-flat.js fta $1 $2
 #node beesearch/fake-customer-flat.js snrf $1 $2
 
 
