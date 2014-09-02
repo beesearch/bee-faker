@@ -11,10 +11,10 @@ var orderLength = process.argv[4];
 var orderLineLenght = Faker.random.numberlowhigh(3,10);
 
 console.log("Starting  generating " + customerLength + " customers for "+ subsidiary);
-var customerFileName = 'fake-customer-' + subsidiary + '.json';
-var contactFileName = 'fake-contact-' + subsidiary + '.json';
-var orderFileName = 'fake-order-' + subsidiary + '.json';
-var orderLineFileName = 'fake-orderLine-' + subsidiary + '.json';
+var customerFileName = 'fake-customer-' + subsidiary + '.csv';
+var contactFileName = 'fake-contact-' + subsidiary + '.csv';
+var orderFileName = 'fake-order-' + subsidiary + '.csv';
+var orderLineFileName = 'fake-orderLine-' + subsidiary + '.csv';
 
 var countContactId = 0;
 var countOrderId = 0;
@@ -45,18 +45,18 @@ for (var i = 1; i <= customerLength; i++) {
   customer.siren = Faker.Helpers.replaceSymbolWithNumber("### ### ###");
 
   // generate customer file
-  var customerRow = '';
-  customerRow += JSON.stringify(customer);
-  customerRow += '\n';
-  fs.appendFileSync(customerFileName, customerRow);
-
   // var customerRow = '';
-  // customerRow = customer.id + ";" + 
-  //               customer.name + ";" + 
-  //               customer.catchPhrase + ";" + 
-  //               customer.siren; 
+  // customerRow += JSON.stringify(customer);
   // customerRow += '\n';
   // fs.appendFileSync(customerFileName, customerRow);
+
+  var customerRow = '';
+  customerRow = customer.id + ";" + 
+                customer.name + ";" + 
+                customer.catchPhrase + ";" + 
+                customer.siren; 
+  customerRow += '\n';
+  fs.appendFileSync(customerFileName, customerRow);
 
 
   // #########
@@ -107,22 +107,22 @@ for (var i = 1; i <= customerLength; i++) {
     }
 
     // generate customer file
-    var contactRow = '';
-    contactRow += JSON.stringify(contact);
-    contactRow += '\n';
-    fs.appendFileSync(contactFileName, contactRow);
-
     // var contactRow = '';
-    // contactRow = contact.id + ";" + 
-    //             contact.customerId + ";" +
-    //             contact.firstName + ";" + 
-    //             contact.lastName + ";" + 
-    //             contact.email + ";" + 
-    //             contact.phone + ";" + 
-    //             contact.avatar + ";" + 
-    //             contact.type ;
+    // contactRow += JSON.stringify(contact);
     // contactRow += '\n';
     // fs.appendFileSync(contactFileName, contactRow);
+
+    var contactRow = '';
+    contactRow = contact.id + ";" + 
+                contact.customerId + ";" +
+                contact.firstName + ";" + 
+                contact.lastName + ";" + 
+                contact.email + ";" + 
+                contact.phone + ";" + 
+                contact.avatar + ";" + 
+                contact.type ;
+    contactRow += '\n';
+    fs.appendFileSync(contactFileName, contactRow);
   
   }
 
@@ -150,20 +150,20 @@ for (var i = 1; i <= customerLength; i++) {
     customer.orders.push(order);
 
     // generate order file
-    var orderRow = '';
-    orderRow += JSON.stringify(order);
-    orderRow += '\n';
-    fs.appendFileSync(orderFileName, orderRow);
-
     // var orderRow = '';
-    // orderRow = order.id + ";" + 
-    //             order.customerId + ";" +
-    //             order.description + ";" + 
-    //             order.createDate + ";" + 
-    //             order.updateDate + ";" + 
-    //             order.shipDate;
+    // orderRow += JSON.stringify(order);
     // orderRow += '\n';
     // fs.appendFileSync(orderFileName, orderRow);
+
+    var orderRow = '';
+    orderRow = order.id + ";" + 
+                order.customerId + ";" +
+                order.description + ";" + 
+                order.createDate + ";" + 
+                order.updateDate + ";" + 
+                order.shipDate;
+    orderRow += '\n';
+    fs.appendFileSync(orderFileName, orderRow);
 
     
     // ############
@@ -199,22 +199,22 @@ for (var i = 1; i <= customerLength; i++) {
       orderLines.push(line);
 
       // generate orderLine file
-      var lineRow = '';
-      lineRow += JSON.stringify(line);
-      lineRow += '\n';
-      fs.appendFileSync(orderLineFileName, lineRow);
-
       // var lineRow = '';
-      // lineRow = line.id + ";" + 
-      //             line.orderId + ";" +
-      //             line.productName + ";" + 
-      //             line.productCategory + ";" + 
-      //             line.orderCategory + ";" + 
-      //             line.quantity + ";" + 
-      //             line.unitPrice + ";" + 
-      //             line.lineAmount ;
+      // lineRow += JSON.stringify(line);
       // lineRow += '\n';
       // fs.appendFileSync(orderLineFileName, lineRow);
+
+      var lineRow = '';
+      lineRow = line.id + ";" + 
+                  line.orderId + ";" +
+                  line.productName + ";" + 
+                  line.productCategory + ";" + 
+                  line.orderCategory + ";" + 
+                  line.quantity + ";" + 
+                  line.unitPrice + ";" + 
+                  line.lineAmount ;
+      lineRow += '\n';
+      fs.appendFileSync(orderLineFileName, lineRow);
     }
 
   };
