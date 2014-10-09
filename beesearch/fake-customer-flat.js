@@ -137,7 +137,8 @@ for (var i = 1; i <= customerLength; i++) {
     var order = {};
     order.id = countOrderId;
     order.customerId = customer.id;
-    order.description = Faker.Helpers.shuffle(definitions.order_type1).slice(0, 1) + " " + Faker.Address.streetName();
+    order.type = Faker.Helpers.shuffle(definitions.order_type1).slice(0, 1)
+    order.description = order.type + " " + Faker.Address.streetName();
 
     var createDate = Faker.Date.between(from, now);
     var shipDate = Faker.Date.future(1000, createDate);
@@ -158,6 +159,7 @@ for (var i = 1; i <= customerLength; i++) {
     var orderRow = '';
     orderRow = order.id + ";" + 
                 order.customerId + ";" +
+                order.type + ";" +
                 order.description + ";" + 
                 order.createDate + ";" + 
                 order.updateDate + ";" + 
