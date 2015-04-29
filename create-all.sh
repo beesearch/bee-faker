@@ -58,8 +58,8 @@ read touche
 
 case $touche in
 		y)
-			cp fake*.csv /Users/alex/ab-repo-scala/bee-spark/src/main/resources
-			ll /Users/alex/ab-repo-scala/bee-spark/src/main/resources/*.csv
+			cp fake*.csv /Users/alex/bee-spark/src/main/resources
+			ll /Users/alex/bee-spark/src/main/resources/*.csv
 			;;
 		n)
 			echo "Bye"
